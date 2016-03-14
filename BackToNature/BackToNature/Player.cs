@@ -9,6 +9,11 @@ namespace BackToNature
     public class Player
     {
         private string name;
+        private double money = 500;
+        
+        private List<Item> items = new List<Item>();
+        private List<Tool> tools = new List<Tool>();
+
         public enum Gender { Male, Female }
 
         private Gender playerGender;
@@ -16,6 +21,30 @@ namespace BackToNature
         public string Name
         {
             get { return name; }
+        }
+
+        public void AddItem()
+        {
+
+        }
+
+        public double SellItem(double sellingPrice, int index)
+        {
+            return money + sellingPrice;
+        }
+
+        public void DiscardItem()
+        {
+
+        }
+
+        public void AddTool()
+        {
+        }
+
+        public void DiscardTool()
+        {
+
         }
 
         public void SetName(string _name)
@@ -44,6 +73,11 @@ namespace BackToNature
         public Gender getGender()
         {
             return playerGender;
+        }
+
+        public void SetMoney(double _money)
+        {
+            money = _money;
         }
     }
 }
