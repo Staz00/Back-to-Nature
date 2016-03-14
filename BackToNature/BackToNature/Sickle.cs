@@ -8,31 +8,23 @@ namespace BackToNature
 {
     public class Sickle : Tool
     {
-        public Sickle(string _name, int _durability, int _upgradeLeve1)
+        public Sickle(string _name, int _durability, int _upgradeLeve1, int _staminaUsage, float _toolLevel)
         {
-            base.name = _name;
+            name = _name;
             base.durability = _durability;
+            base.staminaUsage = _staminaUsage;
             base.upgradeLevel = _upgradeLeve1;
-        }
-
-        protected override void Discard()
-        {
+            base.toolLevel = _toolLevel;
         }
 
         protected override void Sell()
         {
-            
+            throw new NotImplementedException();
         }
 
         protected override void Use()
         {
-            durability--;
-
-            if(durability <= 0)
-            {
-                //tool is broken
-            }
+            throw new NotImplementedException();
         }
-
     }
 }

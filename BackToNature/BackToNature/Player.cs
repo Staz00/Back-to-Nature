@@ -9,6 +9,7 @@ namespace BackToNature
     public class Player
     {
         private string name;
+        private float stamina;
         private double money = 500;
         
         private List<Item> items = new List<Item>();

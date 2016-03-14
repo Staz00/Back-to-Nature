@@ -12,10 +12,11 @@ namespace BackToNature
         protected int durability;
         protected int staminaUsage;
         protected int upgradeLevel;
+        protected float toolLevel;
 
         protected abstract void Use();
+
         protected abstract void Sell();
-        protected abstract void Discard();
 
     }
 }
