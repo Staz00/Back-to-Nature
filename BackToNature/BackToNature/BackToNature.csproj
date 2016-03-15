@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Axe.cs" />
-    <Compile Include="Field.cs" />
+    <Compile Include="FieldSpace.cs" />
     <Compile Include="GameLoop.cs" />
     <Compile Include="Hoe.cs" />
     <Compile Include="Item.cs" />
@@ -56,6 +56,7 @@
     <Compile Include="Sickle.cs" />
     <Compile Include="Tool.cs" />
     <Compile Include="ToolInventory.cs" />
+    <Compile Include="WateringCan.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

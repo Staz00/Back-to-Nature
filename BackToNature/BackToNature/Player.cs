@@ -9,6 +9,7 @@ namespace BackToNature
     public class Player
     {
         public enum Gender { Male, Female }
+        public enum EquippedTool { Sickle, Hoe, Pickaxe, Axe, WateringCan, Crops }
 
         private string name;
         public string Name
@@ -16,15 +17,17 @@ namespace BackToNature
             get { return name; }
         }
 
-        private float stamina = 100;
+        private int stamina = 100;
 
-        public float Stamina
+
+        public int Stamina
         {
             get { return stamina; }
             set { stamina = value; }
         }
         private double money = 500;
         private Gender playerGender;
+        public static EquippedTool? equippedTool = null;
 
         private List<Item> items = new List<Item>();
         private List<Tool> tools = new List<Tool>();
@@ -35,6 +38,7 @@ namespace BackToNature
             AddTool(new Hoe(), null);
             AddTool(new PickAxe(), null);
             AddTool(new Axe(), null);
+            AddTool(new WateringCan(), null);
 
         }
 
@@ -58,7 +62,7 @@ namespace BackToNature
             }
             else
             {
-                foreach (Item i in items)
+                foreach (var i in items)
                 {
                     if (i.name == item.name)
                     {
@@ -118,8 +122,32 @@ namespace BackToNature
             }
         }
 
+        public void EquipTool(int index)
+        {
+            Tool tool = tools.ElementAt(index - 1);
+
+            if (tool.name == "Sickle")
+                equippedTool = EquippedTool.Sickle;
+            else if (tool.name == "Hoe")
+                equippedTool = EquippedTool.Hoe;
+            else if (tool.name == "PickAxe")
+                equippedTool = EquippedTool.Pickaxe;
+            else if (tool.name == "Axe")
+                equippedTool = EquippedTool.Axe;
+
+            Console.WriteLine("\nYou are now equipped with " + tool.name + " tool\n\n");
+            Console.ReadLine();
+
+        }
+
         public void UseTool(int index)
         {
+            if (index >= tools.Count - 1)
+            {
+                Console.WriteLine("Please enter the correct number");
+                return;
+            }
+
             Tool tool = tools.ElementAt(index - 1);
 
             tool.Use();
@@ -166,7 +194,7 @@ namespace BackToNature
             tools.RemoveAt(index - 1);
         }
 
-        public void DisplayTools()
+        public int DisplayTools()
         {
             int count = 1;
 
@@ -175,7 +203,10 @@ namespace BackToNature
                 Console.WriteLine(count + ".) " + t.name);
                 count++;
             }
+
+            return tools.Count;
         }
+        
         
         public void SetGender(string input)
         {
@@ -198,6 +229,11 @@ namespace BackToNature
         public Gender getGender()
         {
             return playerGender;
+        }
+
+        public EquippedTool? getEquippedTool()
+        {
+            return equippedTool;
         }
 
 

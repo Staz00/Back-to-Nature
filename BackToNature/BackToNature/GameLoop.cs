@@ -11,6 +11,8 @@ namespace BackToNature
         Player player;
         private int choice;
 
+        FieldSpace field = new FieldSpace();
+
         private bool gameOver;
 
         public bool GameOver
@@ -100,18 +102,19 @@ namespace BackToNature
 
         private void FarmOptions()
         {
+            Console.Clear();
             Console.WriteLine("Select the number corresponding to your choice\n");
 
             Console.WriteLine("1.) Go to field");
             Console.WriteLine("2.) Open tools inventory");
             Console.WriteLine("3.) Open items inventory");
+            Console.WriteLine("4.) Character Info");
 
             choice = Int32.Parse(Console.ReadLine());
 
             switch (choice)
             {
                 case 1:
-                    Field field = new Field();
                     field.PrintMatrix();
                     OpenToolInventory();
                     break;
@@ -121,39 +124,100 @@ namespace BackToNature
                 case 3:
                     Console.WriteLine("STILL YET TO ADD");
                     break;
+                case 4:
+                    OpenCharacterInfo();
+                    break;
             }
+        }
+
+        private void OpenCharacterInfo()
+        {
+            Console.WriteLine("Name: " + player.Name);
+            Console.WriteLine("Gender: " + player.getGender());
+            Console.WriteLine("Stamina: " + player.Stamina);
+            Console.WriteLine("Current tool equipped: " + player.getEquippedTool());
+            Console.WriteLine("Current gold: " + player.getMoney());
+
+            Console.WriteLine("\n\nReturn to Farm Options?\n1.) YES\n2.)NO");
+
+            choice = Int32.Parse(Console.ReadLine());
+            
+            switch(choice)
+            {
+                case 1:
+                    FarmOptions();
+                    break;
+                case 2:
+                    OpenCharacterInfo();
+                    break;
+            }
+        }
+
+        private void SelectFieldSpace()
+        {
+            Console.Clear();
+            Console.WriteLine("Current tool equipped: " + player.getEquippedTool() + "\n");
+
+            field.PrintMatrix();
+
+            Console.WriteLine("\nSelect a space from your field\n");
+
+            Console.WriteLine("Enter row number");
+            int row = Int32.Parse(Console.ReadLine());
+            Console.WriteLine("Enter column number");
+            int column = Int32.Parse(Console.ReadLine());
+
+            if (field.SelectSpace(row, column, player.getEquippedTool()))
+            {
+                player.UseTool(choice);
+            }
+            else
+                OpenToolInventory();
+
+            field.PrintMatrix();
         }
 
         private void OpenToolInventory()
         {
+            Console.Clear();
             bool done = false;
             while(!done)
             {
-                Console.WriteLine("Select a tool to use\n");
+                Console.WriteLine("Equip a tool\n");
 
-                player.DisplayTools();
-
-                Console.WriteLine();
+                int toolCount = player.DisplayTools();
 
                 choice = Int32.Parse(Console.ReadLine());
 
-                player.UseTool(choice);
+                if (choice < toolCount - 1)
+                    player.EquipTool(choice);
+                else
+                    OpenToolInventory();
+                    
+                
 
-                Console.WriteLine("\nWould you like to use a tool again?\n1.) YES\n2.) NO");
+                SelectFieldSpace();
+
+                Console.WriteLine("\nWould you like to use this tool again?\n1.) YES\n2.) NO\n");
 
                 choice = Int32.Parse(Console.ReadLine());
 
-                switch(choice)
+                switch (choice)
                 {
                     case 1:
                         done = false;
+                        SelectFieldSpace();
                         break;
                     case 2:
                         done = true;
+                        OpenToolInventory();
+                        break;
+                    default:
+                        FarmOptions();
                         break;
                 }
             }
-            
+
         }
 
         private void TaskOptions()
