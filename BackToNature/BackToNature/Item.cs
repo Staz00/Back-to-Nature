@@ -8,7 +8,10 @@ namespace BackToNature
 {
     public class Item
     {
-        private string name;
+        public string name
+        {
+            get { return name; }
+        }
         public int price {
             get { return price; }
         }
@@ -17,7 +20,5 @@ namespace BackToNature
         {
 
         }
-
-
     }
 }

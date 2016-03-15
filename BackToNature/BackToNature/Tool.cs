@@ -8,13 +8,17 @@ namespace BackToNature
 {
     public abstract class Tool
     {
-        protected string name;
+        public string name;
         protected int durability;
         protected int staminaUsage;
         protected int upgradeLevel;
         protected float toolLevel;
+        protected int durabilityCost;
 
-        protected abstract void Use();
+        public abstract void Use();
+        public abstract void Repair();
+
+        public abstract void Upgrade();
 
         protected abstract void Sell();
 

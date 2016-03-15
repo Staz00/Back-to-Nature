@@ -43,13 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Axe.cs" />
     <Compile Include="GameLoop.cs" />
+    <Compile Include="Hoe.cs" />
     <Compile Include="Item.cs" />
+    <Compile Include="ItemInventory.cs" />
+    <Compile Include="PickAxe.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sickle.cs" />
     <Compile Include="Tool.cs" />
+    <Compile Include="ToolInventory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

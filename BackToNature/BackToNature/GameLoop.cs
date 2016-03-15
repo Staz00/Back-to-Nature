@@ -70,9 +70,29 @@ namespace BackToNature
 
             player.SetGender(genderInput);
 
-            Console.WriteLine(player.Name);
-            Console.WriteLine(player.getGender().ToString());
-            
+            Console.Clear();
+
+            Console.WriteLine("Hello there, " + player.Name + ". Welcome to our little town!\n");
+            Console.WriteLine("Here are your details:\n\nYour name is: " + player.Name + "\nYou are a " + player.getGender() + "\nYou have " +
+                player.getMoney() + " in your bank");
+
+
+
+            //Console.WriteLine("Enter the tool that you want to have");
+            //Console.WriteLine("1.) Sickle\n2.) Hoe\n3.) Pickaxe\n4.) Axe");
+
+            //int toolsChoice = Int32.Parse(Console.ReadLine());
+
+            //player.AddTool(toolsChoice);
+
+            //Console.WriteLine("Select a tool to discard:");
+            //player.DisplayTools();
+
+            //int discardChoice = Int32.Parse(Console.ReadLine());
+            //player.DiscardTool(discardChoice);
+
+            //player.DisplayTools();
+
         }
 
     }

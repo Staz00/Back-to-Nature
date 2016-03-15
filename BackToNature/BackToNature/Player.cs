@@ -8,49 +8,158 @@ namespace BackToNature
 {
     public class Player
     {
-        private string name;
-        private float stamina;
-        private double money = 500;
-        
-        private List<Item> items = new List<Item>();
-        private List<Tool> tools = new List<Tool>();
-
         public enum Gender { Male, Female }
 
-        private Gender playerGender;
-
+        private string name;
         public string Name
         {
             get { return name; }
         }
 
-        public void AddItem()
+        private float stamina = 100;
+
+        public float Stamina
         {
+            get { return stamina; }
+            set { stamina = value; }
+        }
+        private double money = 500;
+        private Gender playerGender;
+
+        private List<Item> items = new List<Item>();
+        private List<Tool> tools = new List<Tool>();
+
+        public Player()
+        {
+            AddTool(new Sickle(), null);
+            AddTool(new Hoe(), null);
+            AddTool(new PickAxe(), null);
+            AddTool(new Axe(), null);
 
         }
 
-        public double SellItem(double sellingPrice, int index)
+
+        public void AddItem(string name, int price)
         {
-            return money + sellingPrice;
+            items.Add(new Item(name, price));
         }
 
-        public void DiscardItem()
+        public void SellItem(Item item, int? discardAmount)
         {
+            int price = 0;
 
+            if(discardAmount== null)
+            {
+                foreach(var i in items)
+                {
+                    price += i.price;
+                    items.Remove(i);
+                }
+            }
+            else
+            {
+                foreach (Item i in items)
+                {
+                    if (i.name == item.name)
+                    {
+                        for (int amount = 0; amount < discardAmount; amount++)
+                        {
+                            price += i.price;
+                            items.Remove(i);
+                        }
+                        break;
+                    }
+                }
+            }
+
+            money += price;
         }
 
-        public void AddTool()
+        public void DiscardItem(int index)
         {
+            items.RemoveAt(index - 1);
         }
 
-        public void DiscardTool()
-        {
 
+        public void DiscardItem(Item item, int discardAmount)
+        {
+            foreach(var i in items)
+            {
+                if(i.name == item.name)
+                {
+                    for(int amount = 0; amount < discardAmount; amount++)
+                    {
+                        items.Remove(i);
+                    }
+
+                    break;
+                }
+            }
         }
 
-        public void SetName(string _name)
+        public void AddTool(int? choice)
         {
-            name = _name;
+            switch (choice)
+            {
+                case 1:
+                    tools.Add(new Sickle());
+                    break;
+                case 2:
+                    tools.Add(new Hoe());
+                    break;
+                case 3:
+                    tools.Add(new PickAxe());
+                    break;
+                case 4:
+                    tools.Add(new Axe());
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
+        public void AddTool(Tool tool, int? choice)
+        {
+            if(choice == null)
+                tools.Add(tool);
+
+            else
+            {
+                switch(choice)
+                {
+                    case 1:
+                        tools.Add(new Sickle());
+                        break;
+                    case 2:
+                        tools.Add(new Hoe());
+                        break;
+                    case 3: 
+                        tools.Add(new PickAxe());
+                        break;
+                    case 4: 
+                        tools.Add(new Axe());
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        public void DiscardTool(int index)
+        {
+            tools.RemoveAt(index - 1);
+        }
+
+        public void DisplayTools()
+        {
+            int count = 1;
+
+            foreach(var t in tools)
+            {
+                Console.WriteLine(count + ".) " + t.name);
+                count++;
+            }
         }
         
         public void SetGender(string input)
@@ -76,9 +185,15 @@ namespace BackToNature
             return playerGender;
         }
 
-        public void SetMoney(double _money)
+
+        public void SetName(string _name)
         {
-            money = _money;
+            name = _name;
+        }
+        
+        public double getMoney()
+        {
+            return money;
         }
     }
 }

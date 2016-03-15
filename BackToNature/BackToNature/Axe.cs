@@ -6,21 +6,17 @@ using System.Threading.Tasks;
 
 namespace BackToNature
 {
-    public class Sickle : Tool
+    public class Axe : Tool
     {
-        public Sickle()
+
+        public Axe()
         {
-            base.name = "Sickle";
+            base.name = "Axe";
             base.durability = 100;
             base.durabilityCost = 5;
             base.upgradeLevel = 0;
             base.toolLevel = 0;
-            base.staminaUsage = 5;
-        }
-
-        protected override void Sell()
-        {
-            throw new NotImplementedException();
+            base.staminaUsage = 10;
         }
 
         public override void Use()
@@ -35,6 +31,11 @@ namespace BackToNature
         public override void Repair()
         {
             durability++;
+        }
+
+        protected override void Sell()
+        {
+            throw new NotImplementedException();
         }
 
         public override void Upgrade()
