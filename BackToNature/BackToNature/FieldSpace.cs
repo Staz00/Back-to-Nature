@@ -96,7 +96,8 @@ namespace BackToNature
             }
             else if (tool.Value == Player.EquippedTool.WateringCan && type == ContentType.UNWATERED)
             {
-                SetFieldSpace(x, y);
+                field[x, y].content = '#';
+                field[x, y].contentType = ContentType.UNPLOWED;
 
                 return true;
             }
