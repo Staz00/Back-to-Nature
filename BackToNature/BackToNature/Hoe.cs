@@ -11,17 +11,13 @@ namespace BackToNature
         public Hoe()
         {
             base.name = "Hoe";
-            base.durability = 100;
+            base.durability = 5;
             base.durabilityCost = 5;
-            base.upgradeLevel = 0;
-            base.toolLevel = 0;
             base.staminaUsage = 10;
         }
 
         public override void Use()
         {
-            Player player = new Player();
-            player.Stamina = player.Stamina - staminaUsage;
             durability -= durabilityCost;
 
             Console.WriteLine(name + "'s durability is now " + durability);

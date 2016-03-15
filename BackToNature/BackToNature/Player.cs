@@ -118,6 +118,21 @@ namespace BackToNature
             }
         }
 
+        public void UseTool(int index)
+        {
+            Tool tool = tools.ElementAt(index - 1);
+
+            tool.Use();
+            stamina -= tool.staminaUsage;
+
+            if(tool.durability <= 0)
+            {
+                Console.WriteLine("The tool broke!");
+
+                tools.Remove(tool);
+            }
+
+        }
 
         public void AddTool(Tool tool, int? choice)
         {

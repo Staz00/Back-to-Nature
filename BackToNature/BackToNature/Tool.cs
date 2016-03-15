@@ -9,10 +9,9 @@ namespace BackToNature
     public abstract class Tool
     {
         public string name;
-        protected int durability;
-        protected int staminaUsage;
-        protected int upgradeLevel;
-        protected float toolLevel;
+
+        public int staminaUsage;
+        public int durability;
         protected int durabilityCost;
 
         public abstract void Use();

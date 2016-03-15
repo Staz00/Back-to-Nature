@@ -11,11 +11,14 @@ namespace BackToNature
         public Sickle()
         {
             base.name = "Sickle";
-            base.durability = 100;
+            base.durability = 5;
             base.durabilityCost = 5;
-            base.upgradeLevel = 0;
-            base.toolLevel = 0;
             base.staminaUsage = 5;
+        }
+
+        public int getStaminaUsage()
+        {
+            return staminaUsage;
         }
 
         protected override void Sell()
@@ -25,8 +28,6 @@ namespace BackToNature
 
         public override void Use()
         {
-            Player player = new Player();
-            player.Stamina = player.Stamina - staminaUsage;
             durability -= durabilityCost;
 
             Console.WriteLine(name + "'s durability is now " + durability);
